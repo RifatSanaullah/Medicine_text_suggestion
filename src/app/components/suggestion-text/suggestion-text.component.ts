@@ -24,6 +24,7 @@ export class SuggestionTextComponent implements OnInit {
         for(let index = 1; index < data.length; index++)
         {
           console.log(data);
+          console.log(index);
           //this.options.push(data);
         }
       }
