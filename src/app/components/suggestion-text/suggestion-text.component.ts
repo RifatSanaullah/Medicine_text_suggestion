@@ -3,19 +3,19 @@ import { Component, Input, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-
+import {medicineArray} from './medicine-array'
 @Component({
   selector: 'app-suggestion-text',
   templateUrl: './suggestion-text.component.html',
   styleUrls: ['./suggestion-text.component.css']
 })
+
+
 export class SuggestionTextComponent implements OnInit {
-  
   myControl = new FormControl('');
-  options: string[] = [];
+  options: string[] = medicineArray;
   filteredOptions!: Observable<string[]>;
-  csvFile = new XMLHttpRequest();
-  
+
 
   constructor(private http: HttpClient) {
     this.http.get('../assets/Medicine_list_names.csv', {responseType: 'text'})
@@ -23,9 +23,7 @@ export class SuggestionTextComponent implements OnInit {
       data => {
         for(let index = 1; index < data.length; index++)
         {
-          console.log(data);
-          console.log(index);
-          //this.options.push(data);
+          //this.listMedicine.push(array);
         }
       }
     );
