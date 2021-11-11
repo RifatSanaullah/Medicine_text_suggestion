@@ -3,7 +3,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {medicineArray} from './medicine-array'
+import {medicineArray} from './medicine-array';
+import { List, Dictionary } from 'ts-generic-collections-linq';
+
 @Component({
   selector: 'app-suggestion-text',
   templateUrl: './suggestion-text.component.html',
@@ -17,29 +19,21 @@ export class SuggestionTextComponent implements OnInit {
   filteredOptions!: Observable<string[]>;
 
 
-  constructor(private http: HttpClient) {
-    this.http.get('../assets/Medicine_list_names.csv', {responseType: 'text'})
-    .subscribe(
-      data => {
-        for(let index = 1; index < data.length; index++)
-        {
-          //this.listMedicine.push(array);
-        }
-      }
-    );
-   }
+  constructor() {}
 
   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value)),
-    );
+      //map((val: string) => val.split(" ").length >= 3 ? this._filter(val) : []),
+      map((val: string) => val.split(" ") && val.length >= 3 ? this._filter(val) : [])
+   );
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  private _filter(val: string): string[] {
+    const filterValue = val.toLowerCase();
+    var words = filterValue.split(" ");
+    var filterWords = words[words.length - 1];
+    return this.options.filter(option => option.toLowerCase().includes(filterWords));
   }
 
 }
