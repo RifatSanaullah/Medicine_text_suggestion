@@ -1,14 +1,45 @@
 <form class="textsuggestion-form">
-    <mat-form-field class="suggestion-full-width" appearance="fill">
+  <mwl-text-input-autocomplete-container>
+    <textarea type="text"
+      placeholder="Type @ for Medicine search"
+      class="form-control"
+      rows="6"
+      mwlTextInputAutocomplete
+      [findChoices]="findChoices"
+      [getChoiceLabel]="getChoiceLabel"></textarea>
+  </mwl-text-input-autocomplete-container>
+
+
+
+  <!-- <mwl-text-input-autocomplete-container>
+    <textarea
+      placeholder="Input your text"
+      [formControl] = "myControl">
+    </textarea>
+  </mwl-text-input-autocomplete-container>
+  <ul
+  *ngFor="let option of filteredOptions | async">
+  <a
+    href="javascript:;"
+    (click)= "selectChoice.next(option)">
+    {{ option }}
+  </a>
+</ul> -->
+
+    <!-- <mat-form-field class="suggestion-full-width" appearance="fill">
       <mat-label>Text</mat-label>
       <textarea type="text"
                 matInput
-                [formControl] = "myControl"
-                [matAutocomplete] = "auto"></textarea>
-      <mat-autocomplete #auto="matAutocomplete">
+                [formControl] = "myControl"></textarea> -->
+
+      
+      <!-- <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{option}}
           </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+      </mat-autocomplete> -->
+        <!-- <option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</option>
+    </mat-form-field> -->
+
+
   </form>

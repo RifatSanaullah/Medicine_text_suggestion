@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from "@angular/common";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { TextInputAutocompleteModule } from 'angular-text-input-autocomplete';
 
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
@@ -50,6 +52,8 @@ import { SuggestionTextComponent } from './components/suggestion-text/suggestion
     SuggestionTextComponent
   ],
   imports: [
+    CommonModule,
+    TextInputAutocompleteModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
